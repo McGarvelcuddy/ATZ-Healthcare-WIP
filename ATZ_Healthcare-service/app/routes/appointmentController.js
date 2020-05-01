@@ -1,6 +1,6 @@
 module.exports = function(app) {
     const db = require('../../db/db');
-    const { ObjectId } = require('mongodb');
+    const ObjectID = require('mongodb').ObjectID;
     const dbName = "ATZ"
     const appointmentsCollection = "appointments"
     const referenceCollection = "patients"
@@ -18,7 +18,7 @@ module.exports = function(app) {
     app.post('/addnewappointment', (req, res) => {
         var date = new Date(req.body.date)
         date.setHours(date.getHours() - 4)
-        const appointment = { patientID: ObjectId(req.body.patientID), date: date, reason: req.body.reason };
+        const appointment = { patientID: ObjectID(req.body.patientID), date: date, reason: req.body.reason };
         db.initialize(dbName, appointmentsCollection, dbCollection => {
             dbCollection.insertOne(appointment, function(err) {
                 const apptid = appointment._id;
@@ -98,7 +98,8 @@ module.exports = function(app) {
 
     app.get('/patientappointment', (req, res) => {
         db.initialize(dbName, appointmentsCollection, dbCollection => {
-            dbCollection.find({ "_id": req.query._id }, function(err, resp) {
+            const id = new ObjectID(req.query._id)
+            dbCollection.find({ "patientID": id }, function(err, resp) {
                 if (err) {
                     res.send(err);
                 } else {
@@ -113,4 +114,5 @@ module.exports = function(app) {
             })
         })
     })
+
 }

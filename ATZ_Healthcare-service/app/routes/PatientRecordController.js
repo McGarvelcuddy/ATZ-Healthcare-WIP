@@ -90,13 +90,12 @@ module.exports = function(app) {
             var updatedObject = req.body.params.updatedRecord
             updatedObject._id = ObjectID(updatedObject._id)
             updatedObject.patientID = ObjectID(updatedObject.patientID)
-
-// console.log(req.body.params.updatedRecord)
-            dbCollection.save(updatedObject, function(err, res) {
+            dbCollection.save(updatedObject, function(err, resp) {
                 if (err) {
-                    // res.send('error finding record to delete')
+                    res.send({success:false})
                     console.log(err)
                 } else {
+                    res.send({success:true})
                     console.log("Updated successfully");
                 }
             })

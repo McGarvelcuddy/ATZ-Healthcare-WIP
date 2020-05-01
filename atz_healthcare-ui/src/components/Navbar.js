@@ -1,11 +1,7 @@
 import React from "react";
 import "./css/navbar.css";
-// import NewPostModal from "./Modals/NewPostModal";
 
 function Navbar() {
-    //   const [modalOpen, updateModal] = useState(false);
-    //   const [isLoading, setIsLoading] = useState(true);  
-
     return (
         <div>
             <ul className="navinator">
@@ -15,21 +11,17 @@ function Navbar() {
                 <li className="navElement">
                     <a href="/dashboard">Home</a>
                 </li>
-                <li className="navElement">
-                    <a href="/dashboard">Patient Profile</a>
-                </li>
                 <li style={{ float: "right" }}>
                     <a
                         className="active"
-                        onClick={e => console.log("modal opens here")}>
+                        href="/dashboard">
                         Schedule An Appointment
             </a>
                 </li>
                 <li className="navElement" style={{ float: "right" }}>
-                    <a href="/login">Login</a>
+                    <a href="/login">Logout</a>
                 </li>
             </ul>
-            {/* <NewPostModal show={modalOpen} updateModal={updateModal} /> */}
         </div>
     );
 

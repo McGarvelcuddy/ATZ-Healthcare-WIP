@@ -39,10 +39,17 @@ export function getPatientRecord(setPatientRecord, patientId) {
   axios
     .get(endpoint + "/getPatientRecord", { params: { _id: patientId } })
     .then((response) => {
-      console.log(response);
       setPatientRecord(response.data);
     })
     .catch((error) => console.log(error));
+}
+
+export function getPatientAppointments(setPatientAppointments, patientId) {
+  axios.get(endpoint + "/patientappointment", { params: { _id: patientId } })
+    .then(response => {
+      setPatientAppointments(response.data)
+    })
+    .catch(error => console.log(error))
 }
 
 export function addNewPatient(newPatient) {

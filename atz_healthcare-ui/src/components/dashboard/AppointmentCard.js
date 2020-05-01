@@ -11,11 +11,11 @@ function AppointmentCard(props) {
     date.setHours(date.getHours() - 12)
   }
     
-  // useEffect(()=>{
-  //   axios.get('https://api.generated.photos/api/v1/faces?api_key=Pk4SsXViAn4aHsG2DDEN1g&order_by=random&gender=male')
-  //   .then( response => { setImgSrc(response.data.faces[0].urls[4]["512"]); })
-  //   .catch( error => console.log(error))
-  // },[])
+  useEffect(()=>{
+    axios.get('https://api.generated.photos/api/v1/faces?api_key=Pk4SsXViAn4aHsG2DDEN1g&order_by=random&gender=male')
+    .then( response => { setImgSrc(response.data.faces[0].urls[4]["512"]); })
+    .catch( error => console.log(error))
+  },[])
 
   return (
     <div>
